@@ -83,3 +83,51 @@ SHOW TABLES;
 DESCRIBE magazines;
 DESCRIBE magazine_sections;
 DESCRIBE magazine_images;
+
+
+
+
+
+create table Users(
+Id INT AUTO_INCREMENT PRIMARY KEY,
+IdRol BIGINT NOT NULL,
+Email VARCHAR(200) NOT NULL UNIQUE,
+Password VARCHAR(255) NOT NULL,
+Name VARCHAR(200) NOT NULL,
+Lastname VARCHAR(200) NOT NULL,
+Image VARCHAR(1000) NOT NULL,
+Age INT NOT NULL,
+IdCity INT NOT NULL,
+IdState INT NOT NULL,
+IdCountry INT NOT NULL,
+RegisterDate DATETIME NOT NULL,
+UpdatedDate DATETIME NOT NULL
+);
+
+create table Rol(
+Id INT PRIMARY KEY,
+Name VARCHAR(200) NOT NULL,
+RegisterDate DATETIME NOT NULL,
+UpdatedDate DATETIME NOT NULL
+);
+
+create table City(
+Id INT PRIMARY KEY,
+Name VARCHAR(200) NOT NULL,
+RegisterDate DATETIME NOT NULL,
+UpdatedDate DATETIME NOT NULL
+);
+
+create table State(
+Id INT PRIMARY KEY,
+Name VARCHAR(200) NOT NULL,
+RegisterDate DATETIME NOT NULL,
+UpdatedDate DATETIME NOT NULL
+);
+
+create table Country(
+Id INT PRIMARY KEY,
+Name VARCHAR(200) NOT NULL,
+RegisterDate DATETIME NOT NULL,
+UpdatedDate DATETIME NOT NULL
+);

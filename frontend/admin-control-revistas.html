@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Control de revistas | FACTOR 24</title>
+
+  <link rel="stylesheet" href="css/admin-revista.css" />
+</head>
+<body>
+
+  <main class="admin-page">
+
+    <aside class="admin-sidebar">
+      <a href="index.html" class="logo">
+        <span>FACTOR</span>24
+      </a>
+
+      <nav>
+        <a href="index.html">Inicio web</a>
+        <a href="admin-control-revistas.html" class="active">Ver revistas</a>
+        <a href="admin-revista.html">Nueva revista</a>
+      </nav>
+    </aside>
+
+    <section class="admin-content">
+
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Panel editorial</p>
+          <h1>Control de revistas</h1>
+          <p>
+            Administra las revistas publicadas, borradores y ediciones programadas.
+          </p>
+        </div>
+
+        <a href="admin-revista.html" class="btn-primary">Nueva revista</a>
+      </header>
+
+      <section class="form-card">
+        <div class="form-card-header">
+          <span>01</span>
+          <div>
+            <h2>Revistas registradas</h2>
+            <p>Desde aquí puedes publicar, pasar a borrador, programar o eliminar revistas.</p>
+          </div>
+        </div>
+
+        <div id="adminMagazinesState" class="admin-state">
+          Cargando revistas...
+        </div>
+
+        <div class="admin-table-wrapper">
+          <table class="admin-table" id="adminMagazinesTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Portada</th>
+                <th>Revista</th>
+                <th>Categoría</th>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="adminMagazinesBody">
+              <!-- JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="js/admin-control-revistas.js"></script>
+</body>
+</html>
