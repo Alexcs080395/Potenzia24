@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Editar Revista | FACTOR 24</title>
+
+  <link rel="stylesheet" href="css/admin-revista.css" />
+</head>
+<body>
+
+  <main class="admin-page">
+
+    <aside class="admin-sidebar">
+      <a href="index.html" class="logo">
+        <span>FACTOR</span>24
+      </a>
+
+      <nav>
+        <a href="index.html">Inicio web</a>
+        <a href="admin-control-revistas.html" class="active">Ver revistas</a>
+        <a href="admin-revista.html">Nueva revista</a>
+        
+        
+      </nav>
+    </aside>
+
+    <section class="admin-content">
+
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Panel editorial</p>
+          <h1>Editar revista</h1>
+          <p>
+            Modifica los datos generales, portada, estatus y contenido de las 8 secciones.
+          </p>
+        </div>
+
+        <a href="admin-control-revistas.html" class="btn-secondary">Volver al control</a>
+      </header>
+
+      <form id="editMagazineForm" class="publish-form">
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <span>01</span>
+            <div>
+              <h2>Datos generales</h2>
+              <p>Información principal de la revista.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="editionNumber">Número de edición</label>
+              <input type="text" id="editionNumber" name="editionNumber" required>
+            </div>
+
+            <div class="field">
+              <label for="publishDate">Fecha de publicación</label>
+              <input type="date" id="publishDate" name="publishDate" required>
+            </div>
+
+            <div class="field">
+              <label for="status">Estatus</label>
+              <select id="status" name="status" required>
+                <option value="draft">Borrador</option>
+                <option value="published">Publicada</option>
+                <option value="scheduled">Programada</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="category">Tema principal</label>
+              <input type="text" id="category" name="category" required>
+            </div>
+
+            <div class="field full">
+              <label for="title">Título de la revista</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="field full">
+              <label for="slug">URL / Slug</label>
+              <input type="text" id="slug" name="slug" required>
+            </div>
+
+            <div class="field full">
+              <label for="summary">Descripción corta</label>
+              <textarea id="summary" name="summary" rows="4" required></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <span>02</span>
+            <div>
+              <h2>Portada de la revista</h2>
+              <p>Sube una nueva portada solo si deseas reemplazar la actual.</p>
+            </div>
+          </div>
+
+          <div class="cover-upload">
+            <label for="coverImage" class="upload-box">
+              <input type="file" id="coverImage" name="coverImage" accept="image/*">
+              <div>
+                <strong>Cambiar portada</strong>
+                <p>PNG, JPG o WEBP. Si no subes una nueva, se conserva la actual.</p>
+              </div>
+            </label>
+
+            <div class="cover-preview" id="coverPreview">
+              <span>Vista previa</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <span>03</span>
+            <div>
+              <h2>Contenido editorial</h2>
+              <p>Edita las 8 secciones de la revista.</p>
+            </div>
+          </div>
+
+          <div class="sections-wrapper">
+
+            <div class="section-editor">
+              <h3>01. Tema del mes</h3>
+              <input type="text" name="sectionTitle1" required>
+              <textarea name="sectionContent1" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>02. Creatividad digital</h3>
+              <input type="text" name="sectionTitle2" required>
+              <textarea name="sectionContent2" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>03. Automatización</h3>
+              <input type="text" name="sectionTitle3" required>
+              <textarea name="sectionContent3" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>04. Code Without Fear</h3>
+              <input type="text" name="sectionTitle4" required>
+              <textarea name="sectionContent4" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>05. Herramienta del mes</h3>
+              <input type="text" name="sectionTitle5" required>
+              <textarea name="sectionContent5" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>06. Hecho en MX</h3>
+              <input type="text" name="sectionTitle6" required>
+              <textarea name="sectionContent6" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>07. Entrevista 24</h3>
+              <input type="text" name="sectionTitle7" required>
+              <textarea name="sectionContent7" rows="8" required></textarea>
+            </div>
+
+            <div class="section-editor">
+              <h3>08. Human OS</h3>
+              <input type="text" name="sectionTitle8" required>
+              <textarea name="sectionContent8" rows="8" required></textarea>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <a href="admin-control-revistas.html" class="btn-secondary">Cancelar</a>
+          <button type="submit" class="btn-primary">Guardar cambios</button>
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="js/admin-editar-revista.js"></script>
+</body>
+</html>
