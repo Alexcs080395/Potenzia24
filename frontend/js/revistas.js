@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://potenzia24.com";
 
 const magazinesGrid = document.getElementById("magazinesGrid");
 const magazinesLoading = document.getElementById("magazinesLoading");

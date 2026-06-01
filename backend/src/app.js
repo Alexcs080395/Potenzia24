@@ -28,4 +28,15 @@ app.use("/api/admin/magazines", adminMagazineRoutes);
 
 app.use(errorMiddleware);
 
+app.get("/api/env-check", (req, res) => {
+  res.json({
+    port: process.env.PORT,
+    dbHost: process.env.DB_HOST,
+    dbUser: process.env.DB_USER,
+    dbName: process.env.DB_NAME,
+    dbPort: process.env.DB_PORT,
+    dbPasswordLoaded: process.env.DB_PASSWORD ? true : false,
+  });
+});
+
 module.exports = app;

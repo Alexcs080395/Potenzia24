@@ -104,7 +104,7 @@ form.addEventListener("submit", async (event) => {
   payload.append("coverImage", coverInput.files[0]);
 
   try {
-  const response = await fetch("http://localhost:3000/api/magazines", {
+  const response = await fetch("/api/magazines", {
     method: "POST",
     body: payload,
   });
