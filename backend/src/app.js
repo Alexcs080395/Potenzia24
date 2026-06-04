@@ -6,6 +6,9 @@ const magazineRoutes = require("./routes/magazineRoutes");
 const adminMagazineRoutes = require("./routes/adminMagazineRoutes");
 const testRoutes = require("./routes/testRoutes");
 
+const authRoutes = require("./routes/authRoutes");
+const catalogRoutes = require("./routes/catalogRoutes");
+
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -25,6 +28,9 @@ app.get("/", (req, res) => {
 app.use("/api", testRoutes);
 app.use("/api/magazines", magazineRoutes);
 app.use("/api/admin/magazines", adminMagazineRoutes);
+
+app.use("/api/auth", authRoutes);
+app.use("/api/catalogs", catalogRoutes);
 
 app.use(errorMiddleware);
 
