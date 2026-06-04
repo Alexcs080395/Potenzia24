@@ -10,22 +10,30 @@ async function getCountries() {
   return rows;
 }
 
-async function getStates() {
-  const [rows] = await pool.query(`
-    SELECT Id, Name
+async function getStatesByCountry(idCountry) {
+  const [rows] = await pool.query(
+    `
+    SELECT Id, Id_Country, Name
     FROM State
+    WHERE Id_Country = ?
     ORDER BY Name ASC
-  `);
+    `,
+    [idCountry]
+  );
 
   return rows;
 }
 
-async function getCities() {
-  const [rows] = await pool.query(`
-    SELECT Id, Name
+async function getCitiesByState(idState) {
+  const [rows] = await pool.query(
+    `
+    SELECT Id, Id_State, Name
     FROM City
+    WHERE Id_State = ?
     ORDER BY Name ASC
-  `);
+    `,
+    [idState]
+  );
 
   return rows;
 }
@@ -42,7 +50,7 @@ async function getRoles() {
 
 module.exports = {
   getCountries,
-  getStates,
-  getCities,
+  getStatesByCountry,
+  getCitiesByState,
   getRoles,
 };

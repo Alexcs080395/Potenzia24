@@ -12,9 +12,11 @@ async function getCountries(req, res) {
   }
 }
 
-async function getStates(req, res) {
+async function getStatesByCountry(req, res) {
+  const { idCountry } = req.params;
+
   try {
-    const states = await Catalog.getStates();
+    const states = await Catalog.getStatesByCountry(idCountry);
     res.json(states);
   } catch (error) {
     res.status(500).json({
@@ -24,9 +26,11 @@ async function getStates(req, res) {
   }
 }
 
-async function getCities(req, res) {
+async function getCitiesByState(req, res) {
+  const { idState } = req.params;
+
   try {
-    const cities = await Catalog.getCities();
+    const cities = await Catalog.getCitiesByState(idState);
     res.json(cities);
   } catch (error) {
     res.status(500).json({
@@ -50,7 +54,7 @@ async function getRoles(req, res) {
 
 module.exports = {
   getCountries,
-  getStates,
-  getCities,
+  getStatesByCountry,
+  getCitiesByState,
   getRoles,
 };

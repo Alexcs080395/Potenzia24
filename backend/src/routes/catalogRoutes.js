@@ -4,16 +4,16 @@ const router = express.Router();
 
 const {
   getCountries,
-  getStates,
-  getCities,
+  getStatesByCountry,
+  getCitiesByState,
   getRoles,
 } = require("../controllers/catalogController");
 
 router.get("/countries", getCountries);
 
-router.get("/states", getStates);
+router.get("/countries/:idCountry/states", getStatesByCountry);
 
-router.get("/cities", getCities);
+router.get("/states/:idState/cities", getCitiesByState);
 
 router.get("/roles", getRoles);
 

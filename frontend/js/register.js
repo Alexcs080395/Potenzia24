@@ -1,4 +1,4 @@
-const API_BASE_URL = window.API_BASE_URL || "https://potenzia24.com";
+const API_BASE_URL = "https://potenzia24.com";
 
 const registerForm = document.getElementById("registerForm");
 
@@ -17,6 +17,14 @@ const loadSelect = (select, items, placeholder) => {
   });
 };
 
+const resetStates = () => {
+  stateSelect.innerHTML = `<option value="">Seleccionar estado</option>`;
+};
+
+const resetCities = () => {
+  citySelect.innerHTML = `<option value="">Seleccionar ciudad</option>`;
+};
+
 const loadCountries = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/catalogs/countries`);
@@ -28,20 +36,38 @@ const loadCountries = async () => {
   }
 };
 
-const loadStates = async () => {
+const loadStatesByCountry = async (idCountry) => {
+  if (!idCountry) {
+    resetStates();
+    resetCities();
+    return;
+  }
+
   try {
-    const response = await fetch(`${API_BASE_URL}/api/catalogs/states`);
+    const response = await fetch(
+      `${API_BASE_URL}/api/catalogs/countries/${idCountry}/states`
+    );
+
     const states = await response.json();
 
     loadSelect(stateSelect, states, "Seleccionar estado");
+    resetCities();
   } catch (error) {
     console.error("Error al cargar estados:", error);
   }
 };
 
-const loadCities = async () => {
+const loadCitiesByState = async (idState) => {
+  if (!idState) {
+    resetCities();
+    return;
+  }
+
   try {
-    const response = await fetch(`${API_BASE_URL}/api/catalogs/cities`);
+    const response = await fetch(
+      `${API_BASE_URL}/api/catalogs/states/${idState}/cities`
+    );
+
     const cities = await response.json();
 
     loadSelect(citySelect, cities, "Seleccionar ciudad");
@@ -49,6 +75,14 @@ const loadCities = async () => {
     console.error("Error al cargar ciudades:", error);
   }
 };
+
+countrySelect.addEventListener("change", () => {
+  loadStatesByCountry(countrySelect.value);
+});
+
+stateSelect.addEventListener("change", () => {
+  loadCitiesByState(stateSelect.value);
+});
 
 registerForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -63,9 +97,9 @@ registerForm.addEventListener("submit", async (event) => {
   payload.append("Name", formData.get("name"));
   payload.append("Lastname", formData.get("lastname"));
   payload.append("Age", formData.get("age"));
-  payload.append("IdCity", formData.get("idCity"));
-  payload.append("IdState", formData.get("idState"));
   payload.append("IdCountry", formData.get("idCountry"));
+  payload.append("IdState", formData.get("idState"));
+  payload.append("IdCity", formData.get("idCity"));
 
   const image = formData.get("image");
 
@@ -86,7 +120,6 @@ registerForm.addEventListener("submit", async (event) => {
     }
 
     alert("Usuario registrado correctamente");
-
     window.location.href = "login.html";
   } catch (error) {
     console.error("Error registro:", error);
@@ -94,6 +127,6 @@ registerForm.addEventListener("submit", async (event) => {
   }
 });
 
+resetStates();
+resetCities();
 loadCountries();
-loadStates();
-loadCities();
