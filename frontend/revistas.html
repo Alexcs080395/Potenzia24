@@ -3,105 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Revistas | POTENZIA 24</title>
-
-  <link rel="stylesheet" href="css/styleslimpio.css" />
+  <meta name="description" content="Biblioteca de revistas digitales publicadas por POTENZIA24." />
+  <title>Revistas | POTENZIA24</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
-  <!-- HEADER -->
   <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="logo">
-        <span>POTENZIA</span>24
-      </a>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">POTENZIA<span>24</span></a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-        ☰
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" type="button">
+        <span></span>
+        <span></span>
       </button>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="revistas.html">Revistas</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
-        <li><a href="#">Entrevistas</a></li>
-        <li><a href="#">Campus</a></li>
-        <li><a href="#">Comunidad</a></li>
-      </ul>
+      <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="revistas.html" class="is-active" aria-current="page">Revistas</a>
+        <a href="index.html#categorias">Categorías</a>
+        <a href="index.html#proyecto">Proyecto</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="index.html#newsletter">Comunidad</a>
+      </nav>
 
-      <a href="admin-revista.html" class="btn-header">Publicar</a>
-    </nav>
+      <a href="login.html" class="header-btn">Acceder</a>
+    </div>
   </header>
 
-  <main>
-
-    <!-- HERO REVISTAS -->
-    <section class="magazine-hero">
-      <div>
-        <p class="eyebrow">Biblioteca editorial</p>
-        <h1>Revistas digitales POTENZIA 24</h1>
-        <p>
-          Explora nuestras ediciones temáticas publicadas: tecnología, creatividad,
-          industria, automatización, inteligencia artificial y cultura digital aplicada.
-        </p>
-      </div>
-    </section>
-
-    <!-- LISTADO DINÁMICO -->
-    <section class="latest-section">
-      <div class="section-header-row">
+  <main class="content-page">
+    <section class="page-hero magazine-page-hero section-line">
+      <div class="container page-hero-grid reveal">
         <div>
-          <p class="eyebrow">Ediciones publicadas</p>
-          <h2>Últimas revistas</h2>
+          <p class="eyebrow"><span></span>Biblioteca editorial</p>
+          <h1>Revistas digitales POTENZIA24.</h1>
+          <p>
+            Explora nuestras ediciones publicadas sobre tecnología, creatividad, automatización,
+            inteligencia artificial, cultura digital y talento mexicano.
+          </p>
+          <div class="hero-actions">
+            <a href="#biblioteca" class="btn btn-primary">Ver ediciones</a>
+            <a href="index.html" class="btn btn-secondary">Volver al inicio</a>
+          </div>
         </div>
 
-        <a href="index.html" class="link-more">← Volver al inicio</a>
-      </div>
-
-      <!-- Loading -->
-      <div class="magazines-state" id="magazinesLoading">
-        <p>Cargando revistas publicadas...</p>
-      </div>
-
-      <!-- Error -->
-      <div class="magazines-state magazines-error-state" id="magazinesError" style="display: none;">
-        <p>No pudimos cargar las revistas. Revisa que el servidor esté funcionando.</p>
-      </div>
-
-      <!-- Vacío -->
-      <div class="magazines-state" id="magazinesEmpty" style="display: none;">
-        <p>Todavía no hay revistas publicadas.</p>
-        <a href="admin-revista.html" class="btn-primary">Publicar primera revista</a>
-      </div>
-
-      <!-- Grid dinámico -->
-      <div class="magazines-grid" id="magazinesGrid">
-        <!-- Aquí se insertan las revistas con JS -->
+        <div class="page-hero-panel">
+          <span>24</span>
+          <h2>Ediciones publicadas</h2>
+          <p>Portadas, resúmenes y lecturas editoriales conectadas directamente al backend.</p>
+        </div>
       </div>
     </section>
 
+    <section class="latest-section section-line" id="biblioteca">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <p class="eyebrow-text">Ediciones publicadas</p>
+            <h2>Últimas revistas</h2>
+          </div>
+          <p class="section-description">
+            Este listado se alimenta desde <strong>/api/magazines</strong> y muestra únicamente el contenido publicado.
+          </p>
+        </div>
+
+        <div class="magazines-state" id="magazinesLoading">
+          <p>Cargando revistas publicadas...</p>
+        </div>
+
+        <div class="magazines-state magazines-error-state" id="magazinesError" hidden>
+          <p>No pudimos cargar las revistas. Revisa que el servidor esté funcionando.</p>
+        </div>
+
+        <div class="magazines-state" id="magazinesEmpty" hidden>
+          <p>Todavía no hay revistas publicadas.</p>
+        </div>
+
+        <div class="magazines-grid" id="magazinesGrid" aria-live="polite"></div>
+      </div>
+    </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div>
-      <a href="index.html" class="logo footer-logo">
-        <span>POTENZIA</span>24
-      </a>
-      <p>Plataforma editorial de tecnología, personas, ideas y futuro.</p>
-    </div>
+  <footer class="footer section-line">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo">POTENZIA<span>24</span></a>
 
-    <div class="footer-links">
-      <a href="revistas.html">Revistas</a>
-      <a href="nosotros.html">Nosotros</a>
-      <a href="#">Instagram</a>
-      <a href="#">TikTok</a>
-      <a href="#">YouTube</a>
-      <a href="#">Contacto</a>
+      <p>Revista digital de tecnología, cultura e innovación.</p>
+
+      <div class="footer-links">
+        <a href="revistas.html">Ediciones</a>
+        <a href="index.html#categorias">Categorías</a>
+        <a href="index.html#proyecto">Proyecto</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="index.html#newsletter">Comunidad</a>
+      </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+
+  <script src="js/script.js"></script>
   <script src="js/revistas.js"></script>
 </body>
 </html>

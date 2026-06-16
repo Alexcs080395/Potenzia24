@@ -1,7 +1,10 @@
-const API_BASE_URL =
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1"
-    ? "http://localhost:3000"
-    : "https://potenzia24.com";
+(() => {
+  const isLocal =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
 
-window.API_BASE_URL = API_BASE_URL;
+  const apiBaseUrl = isLocal ? "http://localhost:3000" : "https://potenzia24.com";
+
+  window.API_BASE_URL = apiBaseUrl;
+  window.POTENZIA_API_BASE_URL = apiBaseUrl;
+})();
