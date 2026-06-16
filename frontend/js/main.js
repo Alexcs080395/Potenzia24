@@ -5,9 +5,11 @@
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
 
 // Cerrar menú al dar clic en un enlace
 const navItems = document.querySelectorAll(".nav-links a");
@@ -23,7 +25,7 @@ navItems.forEach((item) => {
 // =========================
 
 const elementsToReveal = document.querySelectorAll(
-  ".category-card, .article-card, .editorial-content, .editorial-stats div, .community-card"
+  ".category-card, .article-card, .editorial-content, .editorial-stats div, .community-card, .about-reveal"
 );
 
 elementsToReveal.forEach((element) => {
@@ -52,10 +54,12 @@ window.addEventListener("load", revealOnScroll);
 
 const header = document.querySelector(".site-header");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 20) {
-    header.style.background = "rgba(5, 11, 26, 0.92)";
-  } else {
-    header.style.background = "rgba(5, 11, 26, 0.78)";
-  }
-});
+if (header) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      header.style.background = "rgba(5, 11, 26, 0.92)";
+    } else {
+      header.style.background = "rgba(5, 11, 26, 0.78)";
+    }
+  });
+}
