@@ -32,8 +32,8 @@
       localStorage.setItem("token", result.token);
       localStorage.setItem("user", JSON.stringify(result.user));
 
-      alert("Inicio de sesión correcto");
-      window.location.href = "../admin-pages/admin-control-revistas.html";
+      //alert("Inicio de sesión correcto");
+      window.location.href = "../pages/admin-pages/admin-control-revistas.html";
     } catch (error) {
       console.error("Error login:", error);
       alert(error.message || "Error al iniciar sesión");

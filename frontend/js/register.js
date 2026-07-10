@@ -116,7 +116,7 @@
         throw new Error(result.message || "No se pudo registrar el usuario");
       }
 
-      alert("Usuario registrado correctamente");
+      //alert("Usuario registrado correctamente");
       window.location.href = "login.html";
     } catch (error) {
       console.error("Error registro:", error);

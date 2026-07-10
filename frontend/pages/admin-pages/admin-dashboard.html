@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Potenzia24</title>
+  <link rel="stylesheet" href="../../css/admin-revista.css" />
+</head>
+<body>
+  <main class="admin-page">
+
+    <aside class="admin-sidebar">
+      <a href="admin-dashboard.html" class="logo">POTENZIA<span>24</span></a>
+
+      <div>
+        <p class="admin-sidebar-label">Administración</p>
+        <nav aria-label="Navegación de administración">
+          <a href="admin-dashboard.html" class="active">Dashboard</a>
+          <a href="admin-control-revistas.html" class="">Control de revistas</a>
+          <a href="admin-revista.html" class="">Nueva revista</a>
+          <a href="../../index.html">Ir a Potenzia</a>
+        </nav>
+      </div>
+
+      <div class="admin-sidebar-footer">
+        <strong>Panel editorial</strong>
+        <p>Gestiona publicaciones, borradores y ediciones programadas desde un solo lugar.</p>
+      </div>
+    </aside>
+
+    <section class="admin-content">
+      <div class="admin-shell">
+        <header class="admin-header">
+          <div>
+            <p class="eyebrow">Dashboard editorial</p>
+            <h1>Inicio del panel</h1>
+            <p>Visualiza el estado general de las revistas, revisa la última edición publicada y accede rápido a las acciones principales.</p>
+          </div>
+
+          <div class="header-actions">
+            <a href="admin-revista.html" class="btn-primary">Nueva revista</a>
+            <a href="admin-control-revistas.html" class="btn-secondary">Ver revistas</a>
+          </div>
+        </header>
+
+        <section class="dashboard-grid" aria-label="Resumen de revistas">
+          <article class="metric-card">
+            <span>Total</span>
+            <strong id="totalMagazines">0</strong>
+            <p>Revistas registradas</p>
+          </article>
+
+          <article class="metric-card">
+            <span>Publicadas</span>
+            <strong id="publishedMagazines">0</strong>
+            <p>Disponibles para lectores</p>
+          </article>
+
+          <article class="metric-card">
+            <span>Borradores</span>
+            <strong id="draftMagazines">0</strong>
+            <p>Ediciones en preparación</p>
+          </article>
+
+          <article class="metric-card">
+            <span>Programadas</span>
+            <strong id="scheduledMagazines">0</strong>
+            <p>Próximas publicaciones</p>
+          </article>
+        </section>
+
+        <section class="dashboard-layout">
+          <article class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h2>Última revista publicada</h2>
+                <p>La portada y los datos principales se actualizan desde el backend.</p>
+              </div>
+              <a href="admin-control-revistas.html" class="btn-ghost">Administrar</a>
+            </div>
+
+            <div id="latestMagazineState" class="admin-state">Cargando última edición...</div>
+            <div id="latestMagazineCard" class="latest-card" style="display: none;">
+              <div class="latest-cover" id="latestMagazineCover"></div>
+              <div class="latest-info">
+                <p class="category-label" id="latestMagazineCategory">Potenzia24</p>
+                <h3 id="latestMagazineTitle">Última edición</h3>
+                <p id="latestMagazineSummary">Resumen editorial.</p>
+                <div class="dashboard-actions">
+                  <a href="#" class="btn-primary" id="latestMagazineRead">Ver edición</a>
+                  <a href="#" class="btn-secondary" id="latestMagazineEdit">Editar</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel-card">
+            <div class="panel-card-header">
+              <div>
+                <h2>Acciones rápidas</h2>
+                <p>Atajos para operar el contenido editorial.</p>
+              </div>
+            </div>
+
+            <div class="quick-actions">
+              <a href="admin-revista.html" class="quick-action">
+                <strong>Crear nueva edición</strong>
+                <span>Captura datos, portada y secciones.</span>
+              </a>
+
+              <a href="admin-control-revistas.html" class="quick-action">
+                <strong>Control de revistas</strong>
+                <span>Edita, publica, programa o elimina.</span>
+              </a>
+
+              <a href="../client-pages/revistas.html" class="quick-action">
+                <strong>Ver biblioteca pública</strong>
+                <span>Revisa cómo se ve para los lectores.</span>
+              </a>
+            </div>
+          </aside>
+        </section>
+
+        <section class="dashboard-card">
+          <div class="dashboard-card-header">
+            <div>
+              <h2>Actividad reciente</h2>
+              <p>Últimas revistas cargadas en el panel.</p>
+            </div>
+          </div>
+
+          <div id="recentMagazinesState" class="admin-state">Cargando actividad...</div>
+          <div class="admin-table-wrapper">
+            <table class="admin-table" id="recentMagazinesTable" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Revista</th>
+                  <th>Categoría</th>
+                  <th>Fecha</th>
+                  <th>Estatus</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="recentMagazinesBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="../../js/config.js"></script>
+  <script src="../../js/admin-dashboard.js"></script>
+</body>
+</html>

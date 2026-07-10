@@ -1,4 +1,9 @@
-const API_BASE_URL = "https://potenzia24.com";
+const API_BASE_URL =
+  window.POTENZIA_API_BASE_URL ||
+  window.API_BASE_URL ||
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000"
+    : "https://potenzia24.com");
 
 const params = new URLSearchParams(window.location.search);
 const magazineId = params.get("id");
@@ -31,31 +36,23 @@ const sectionNames = [
 
 const getCoverUrl = (coverImage) => {
   if (!coverImage) return "";
-
-  if (coverImage.startsWith("http")) {
-    return coverImage;
-  }
-
+  if (coverImage.startsWith("http")) return coverImage;
   return `${API_BASE_URL}${coverImage}`;
 };
 
 const formatDateForInput = (dateString) => {
   if (!dateString) return "";
-
   const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return "";
   return date.toISOString().split("T")[0];
 };
 
 coverInput.addEventListener("change", () => {
   const file = coverInput.files[0];
-
   if (!file) return;
 
   const imageUrl = URL.createObjectURL(file);
-
-  coverPreview.innerHTML = `
-    <img src="${imageUrl}" alt="Vista previa de portada">
-  `;
+  coverPreview.innerHTML = `<img src="${imageUrl}" alt="Vista previa de portada">`;
 });
 
 const fillForm = (magazine) => {
@@ -68,22 +65,19 @@ const fillForm = (magazine) => {
   form.summary.value = magazine.summary || "";
 
   if (magazine.cover_image) {
-    coverPreview.innerHTML = `
-      <img src="${getCoverUrl(magazine.cover_image)}" alt="Portada actual">
-    `;
+    coverPreview.innerHTML = `<img src="${getCoverUrl(magazine.cover_image)}" alt="Portada actual">`;
   }
 
-  for (let i = 1; i <= 8; i++) {
-    const section = magazine.sections.find(
-      (item) => Number(item.section_order) === i
-    );
+  const sections = Array.isArray(magazine.sections) ? magazine.sections : [];
 
+  for (let i = 1; i <= 8; i++) {
+    const section = sections.find((item) => Number(item.section_order || item.order) === i);
     const titleInput = form[`sectionTitle${i}`];
     const contentTextarea = form[`sectionContent${i}`];
 
     if (section) {
-      titleInput.value = section.section_title || "";
-      contentTextarea.value = section.section_content || "";
+      titleInput.value = section.section_title || section.title || section.section_name || "";
+      contentTextarea.value = section.section_content || section.content || "";
     }
   }
 };
@@ -103,7 +97,6 @@ const loadMagazine = async () => {
     }
 
     const magazine = await response.json();
-
     fillForm(magazine);
   } catch (error) {
     console.error(error);
@@ -116,7 +109,6 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(form);
-
   const magazineData = {
     editionNumber: formData.get("editionNumber"),
     publishDate: formData.get("publishDate"),
@@ -139,7 +131,6 @@ form.addEventListener("submit", async (event) => {
   }
 
   const payload = new FormData();
-
   payload.append("magazine", JSON.stringify(magazineData));
 
   if (coverInput.files[0]) {
@@ -157,11 +148,10 @@ form.addEventListener("submit", async (event) => {
     }
 
     const result = await response.json();
-
     alert("Revista actualizada correctamente");
 
-    if (result.status === "published") {
-      window.location.href = `revista.html?slug=${encodeURIComponent(result.slug)}`;
+    if ((result.status || magazineData.status) === "published") {
+      window.location.href = `../client-pages/revista.html?slug=${encodeURIComponent(result.slug || magazineData.slug)}`;
     } else {
       window.location.href = "admin-control-revistas.html";
     }
